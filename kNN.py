@@ -28,3 +28,19 @@ def classify0(inX, dataSet, labels, k):
     sortedClasses = sorted( classes.iteritems(), key=operator.itemgetter(1), reverse=True)
     return sortedClasses[ 0 ][ 0 ]
 
+def readlines(path):
+    fr = open(path)
+    return fr.readlines()
+
+def file2matrix(filename):
+    lines = readlines( filename )
+    returnMat = zeros((len(lines),3))
+    classLabelVector = []
+    index = 0
+    for line in lines:
+        listFromLine = line.strip().split( '\t' )
+        returnMat[index, :] = listFromLine[0:3]
+        classLabelVector.append(listFromLine[-1])
+        index += 1
+    return returnMat, classLabelVector
+
